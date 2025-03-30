@@ -31,7 +31,7 @@ async def not_found(request: Request, exc: HTTPException):
                         )
 
 
-@app.get("/find_competitors")
+@app.post("/find_competitors")
 def find_competitors(request: dict = Body(..., example={
                                                         "link"   : "http://instagram.com/mtc",
                                                         "segment": "телекоммуникации"
@@ -48,15 +48,10 @@ def find_competitors(request: dict = Body(..., example={
     
         raise HTTPException(status_code=400, detail=f"Error № 0 Ошибка валидации данных: {str(e)}")
   
-    try:      
-        
-        return JSONResponse( {"result": "Все ок"} )
-    
-    except Exception as e:
-        
-        return JSONResponse({'result' : 'Ошибка'})
+    return JSONResponse( {"result": "Все ок"} )
+
     
 
-if __name__ == "__main__":
+# if name == "main":
 
-    uvicorn.run(app, host = '0.0.0.0', port=8000)
+#     uvicorn.run(app, host = '0.0.0.0', port=8000)
